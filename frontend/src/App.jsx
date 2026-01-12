@@ -20,7 +20,7 @@ const StreetKettles = () => {
     if (existingItem) {
       setCart(cart.map(item => item.id === 'sk-001' ? { ...item, qty: item.qty + 1 } : item));
     } else {
-      setCart([...cart, { id: 'sk-001', name: 'Street Kettles™ - Elote Edition', price: 4.99, qty: 1, image: '/package.jpg' }]);
+      setCart([...cart, { id: 'sk-001', name: 'Street Kettles™ - Elote Edition', price: 4.99, qty: 1, image: 'package.jpg' }]);
     }
   };
 
@@ -168,7 +168,7 @@ const StreetKettles = () => {
             <div className="relative group flex justify-center order-1 lg:order-2">
               <div className="absolute inset-0 bg-gradient-to-tr from-yellow-400 to-green-400 rounded-[3rem] blur-[80px] opacity-20 group-hover:opacity-30 transition-opacity duration-500 transform scale-90"></div>
               <img 
-                src="/package.jpg" 
+                src="package.jpg" 
                 alt="Street Kettles" 
                 className="relative z-10 w-full h-auto max-h-[500px] object-contain transform transition-transform duration-500 hover:scale-105 drop-shadow-2xl"
                 onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/600x400/1a1a1a/FFF?text=Package+Image"; }}
@@ -307,7 +307,7 @@ const StreetKettles = () => {
             </div>
             <div className="bg-neutral-800 min-h-[300px] relative overflow-hidden flex items-center justify-center">
               <img 
-               src="/logo.jpg" 
+               src="logo.jpg" 
                alt="Street Kettles Package" 
                className="w-full max-w-md object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500"
                onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/600x400/1a1a1a/FFF?text=Package+Image"; }}
@@ -332,7 +332,7 @@ const StreetKettles = () => {
           <div className="bg-neutral-900 rounded-3xl p-8 border border-neutral-800 flex items-center justify-center relative group">
              <div className="absolute inset-0 bg-yellow-400/5 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
              <img 
-               src="/package.jpg" 
+               src="package.jpg" 
                alt="Street Kettles Package" 
                className="w-full max-w-md object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500"
                onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/600x400/1a1a1a/FFF?text=Package+Image"; }}
