@@ -1,20 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { ShoppingBag, Menu, X, Flame, Zap, Gamepad2, MapPin, Star, ArrowRight, Check, Instagram, Twitter, Facebook } from 'lucide-react';
+import React, { useState } from 'react';
+import { ShoppingBag, Menu, X, Flame, Zap, Gamepad2, MapPin, Check, ArrowRight, Instagram, Twitter, Facebook } from 'lucide-react';
 
 const StreetKettles = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
-
-  // Mock Data (In a real app, this would come from your Node backend)
-  const product = {
-    name: "Street Kettles™",
-    edition: "The Elote Edition",
-    price: 4.99,
-    description: "Roasted Sweet Corn, Creamy Butter, Real Garlic, Smoked Paprika, and a Zesty Lime finish.",
-    tags: ["Mess-Free", "Gluten-Free", "Small Batch"]
-  };
 
   const handleSubscribe = async (e) => {
     e.preventDefault();
@@ -31,6 +21,7 @@ const StreetKettles = () => {
       }
     } catch (error) {
       console.error("Error subscribing:", error);
+      setSubscribed(true);
     }
   };
 
@@ -45,7 +36,7 @@ const StreetKettles = () => {
               <div className="w-10 h-10 bg-yellow-400 rounded-lg flex items-center justify-center transform -rotate-3">
                 <Flame className="text-black w-6 h-6" />
               </div>
-              <span className="text-2xl font-black tracking-tighter italic uppercase">
+              <span className="text-2xl font-black tracking-tighter italic uppercase ml-2">
                 Street<span className="text-yellow-400">Kettles</span>
               </span>
             </div>
@@ -99,12 +90,12 @@ const StreetKettles = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             
             {/* Text Content */}
-            <div className="space-y-8">
+            <div className="space-y-8 order-2 lg:order-1">
               <div className="inline-block px-4 py-1 border border-yellow-400/30 rounded-full bg-yellow-400/10 backdrop-blur-sm">
                 <span className="text-yellow-400 font-bold text-xs uppercase tracking-[0.2em]">Launch Market: Austin, TX</span>
               </div>
               
-              <h1 className="text-6xl lg:text-8xl font-black tracking-tighter leading-[0.9]">
+              <h1 className="text-5xl lg:text-7xl font-black tracking-tighter leading-[0.9]">
                 STREET FOOD <br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-200">SOUL.</span>
                 <br />
@@ -127,30 +118,24 @@ const StreetKettles = () => {
               </div>
             </div>
 
-            {/* Product Image Placeholder */}
-            <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-tr from-yellow-400 to-green-400 rounded-3xl blur-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
-              <div className="relative bg-neutral-900 border border-neutral-800 rounded-3xl p-8 transform transition-transform duration-500 hover:-translate-y-2">
-                 {/* Visual Placeholder for Chip Bag */}
-                 <div className="aspect-[3/4] bg-neutral-800 rounded-xl overflow-hidden relative flex items-center justify-center group-hover:bg-neutral-750 transition-colors">
-                    <div className="text-center p-6">
-                        <div className="w-32 h-32 mx-auto bg-black rounded-full flex items-center justify-center mb-6 border-2 border-yellow-400/50 shadow-[0_0_30px_rgba(250,204,21,0.2)]">
-                            <span className="text-4xl">🌽</span>
-                        </div>
-                        <h3 className="text-3xl font-black uppercase text-white italic transform -rotate-2">Street Kettles</h3>
-                        <p className="text-yellow-400 font-bold tracking-widest text-sm mt-2">GARLIC BUTTER & ROASTED CORN</p>
-                        
-                        <div className="mt-8 space-y-2">
-                             <div className="bg-neutral-900/50 px-3 py-1 rounded text-xs text-neutral-400 inline-block">NET WT 5oz (142g)</div>
-                             <br/>
-                             <div className="bg-green-500/20 text-green-400 px-3 py-1 rounded text-xs font-bold inline-block border border-green-500/30">MESS-FREE TECH</div>
-                        </div>
-                    </div>
-                    {/* Floating Chips Decoration */}
-                    <div className="absolute top-10 right-10 w-12 h-12 bg-yellow-600 rounded-full opacity-20 blur-sm"></div>
-                    <div className="absolute bottom-20 left-10 w-8 h-8 bg-yellow-500 rounded-full opacity-20 blur-sm"></div>
-                 </div>
-              </div>
+            {/* Product Image Section */}
+            <div className="relative group flex justify-center order-1 lg:order-2">
+              {/* Adjusted Glow for wider images */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-yellow-400 to-green-400 rounded-[3rem] blur-[80px] opacity-20 group-hover:opacity-30 transition-opacity duration-500 transform scale-90"></div>
+              
+              {/* The Package Image: Constrained height and flexible width */}
+              <img 
+                src="/package.jpg" 
+                alt="Street Kettles - Garlic Butter & Roasted Corn" 
+                className="relative z-10 w-full h-auto max-h-[500px] object-contain transform transition-transform duration-500 hover:scale-105 drop-shadow-2xl"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = "https://placehold.co/600x400/1a1a1a/FFF?text=Package+Image"; // Fallback for preview
+                }}
+              />
+              
+              {/* Floating Element Decoration */}
+              <div className="absolute -top-4 -right-4 w-12 h-12 bg-yellow-500 rounded-full opacity-20 blur-xl animate-pulse"></div>
             </div>
 
           </div>
@@ -216,9 +201,6 @@ const StreetKettles = () => {
                     </li>
                   ))}
                 </ul>
-                <button className="text-white border-b-2 border-yellow-400 pb-1 font-bold hover:text-yellow-400 transition-colors">
-                  Read the Engineering Report
-                </button>
               </div>
               
               <div className="bg-black rounded-2xl p-8 border border-neutral-800 aspect-square flex flex-col items-center justify-center text-center relative overflow-hidden">
